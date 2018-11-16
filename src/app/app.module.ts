@@ -18,7 +18,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 // import { CacheModule } from 'ionic-cache';
 import { HttpModule } from '@angular/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { AppVersion } from '@ionic-native/app-version';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 // import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { environment } from '../environments/environment';
 
@@ -48,7 +48,7 @@ import { UtilsService } from './providers/utils/utils.service';
 import { Firebase } from '@ionic-native/firebase';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GeolocationProvider } from './providers/geolocation/geolocation';
-import { ComponentsModule } from './components/components.module';
+// import { ComponentsModule } from './components/components.module';
 
 // import { NgReduxModule, NgRedux } from '@angular-redux/store';
 // import { iAppState } from './store/iAppState.interface';
@@ -68,14 +68,14 @@ import { ComponentsModule } from './components/components.module';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    ComponentsModule
+    // ComponentsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     // InAppBrowser,
-    // AppVersion,
+    AppVersion,
     // AuthService,
     // FitbitApiProvider,
     // AngularFireDatabase,

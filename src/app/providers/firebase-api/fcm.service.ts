@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { Firebase } from '@ionic-native/firebase';
+import { Firebase } from '@ionic-native/firebase/ngx';
 import { Platform } from '@ionic/angular';
 import { FirebaseAuthApiProvider } from './firebase-auth-api';
 import { AngularFirestore } from '@angular/fire/firestore';

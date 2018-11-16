@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { UtilsService } from '../../providers/utils/utils.service';
-import { AppVersion } from '@ionic-native/app-version';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 import { Platform, App, NavController, NavParams } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 /**

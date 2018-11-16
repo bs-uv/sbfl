@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "197459977306",
+    "firebase_url": "https://scoreboard-for-life.firebaseio.com",
+    "project_id": "scoreboard-for-life",
+    "storage_bucket": "scoreboard-for-life.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197459977306:android:a6bf683ba3a308da",
+        "android_client_info": {
+          "package_name": "com.devconsult.sbfl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "197459977306-j97qsbmh6gau91jekumcedrpi9c2oceb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDifCFmq7v4bqnn7EiIvZA9PBNZ_jswfDI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

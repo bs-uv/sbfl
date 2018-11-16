@@ -1,0 +1,164 @@
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+
+import { 
+  AngularFirestore, 
+  AngularFirestoreDocument,
+  AngularFirestoreCollection 
+} from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase/app';
+
+import { Message } from '../../models/message.interface';
+import { Channel } from '../../models/channel.interface';
+
+import { Avatar } from '@ionic/angular/components/avatar/avatar';
+import { DateTime } from '@ionic/angular/components/datetime/datetime';
+
+
+@Injectable()
+export class FirebaseApiProvider {
+
+  user: firebase.User;
+  authState: Observable<firebase.User>;
+
+  //Fire Store Ref
+  private channelCollectionRef: AngularFirestoreCollection<Channel>;
+  channels: Observable<Channel[]>;
+  messages: Observable<any[]>;
+  pendingMessage = [
+    {
+      body: "Test AAA",
+      createdAt: "",
+      readStatus: false,
+      uid: "tahmina"
+    },
+    {
+      body: "Test BBB",
+      createdAt: "",
+      readStatus: false,
+      uid: "tahmina"
+    }
+  ];
+
+  // Query Limit
+  limit: number;
+  page: number;
+
+  constructor(
+    private afAuth: AngularFireAuth, 
+    private afd: AngularFireDatabase, 
+    private afs: AngularFirestore
+  ) {
+    this.limit = 10;
+    this.page = 1;
+
+    this.authState = afAuth.authState;
+
+    this.authState.subscribe((user: firebase.User) => {      
+      this.user = user;
+      this.channelCollectionRef = this.afs.collection('channels');
+      if(this.user){
+        this.getMessageList();
+      }
+    });
+    
+  }
+
+  private getMessageList(){
+    this.messages = this.afs.collection('channels').doc(this.user.uid).collection('messages', ref => ref.orderBy('createdAt', 'desc').limit(this.limit * this.page)).valueChanges();
+    
+  }
+  
+  sendMessage(body: string) {
+    // const id = this.afs.createId();
+    if (body && body.trim().length) {
+      var message: Message = { 
+        uid: this.user.uid, 
+        body: body, 
+        readStatus: false,
+        createdAt: new Date().getTime(),
+      };
+
+      // this.pendingMessage.push(message);
+      // console.log(this.pendingMessage);
+
+      var channelData: Channel = {
+        uid: this.user.uid,
+        name: this.user.displayName,
+        default: true,
+        status: "open"
+      };
+
+      console.log(message);
+      
+      this.afs.collection('channels').doc(this.user.uid).update(channelData).then(data => {
+        this.insertMessage(message);
+      }, 
+      e=>{
+        this.afs.collection('channels').doc(this.user.uid).set(channelData).then(data => {
+          this.insertMessage(message);
+        });
+      }).catch(e => {
+        console.log(e);
+      });
+    }
+  }
+
+  private insertMessage(message: Message){
+    this.afs.collection('channels').doc(this.user.uid).collection('messages').add(message).then(
+      successData => {
+        //this.pendingMessage.pop();
+        console.log(successData);
+      }
+    );
+  }
+
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      this.page = this.page + 1;
+      this.getMessageList();
+
+      console.log('Async operation has ended');
+      // infiniteScroll.complete();
+    }, 500);
+  }
+
+  signUp(email, password, name) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+      .then(newUser => {
+        this.afd.list('/userProfile').update(newUser.uid, { email: email, name: name });
+      });
+  }
+
+  loginUser(email, password) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  loginUserWithToken(token: string) {    
+    return this.afAuth.auth.signInWithCustomToken(token).then(
+      loggedinUser => {
+
+      }
+    );
+  }
+
+  logoutUser() {
+    return this.afAuth.auth.signOut();
+  }
+
+  resetPassword(email) {
+    return this.afAuth.auth.sendPasswordResetEmail(email);
+  }
+
+  
+  getUserData() {
+    return this.afd.object('/userProfile/' + this.user.uid);
+  }
+
+}

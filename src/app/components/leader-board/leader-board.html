@@ -1,0 +1,12 @@
+<ion-list>
+  <ion-list-header>
+    Life Leaders
+  </ion-list-header>
+  <ion-item *ngFor="let user of users">
+    <ion-avatar item-start>
+      <img [src]="user.photoURL">
+    </ion-avatar>
+    <h3>{{user.name}}</h3>
+    <ion-note item-end>{{user.score}}</ion-note>
+  </ion-item>
+</ion-list>

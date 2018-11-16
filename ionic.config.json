@@ -1,0 +1,7 @@
+{
+  "name": "sbfl",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,9 @@
+<ion-row>
+  <ion-col col-4>
+    <h5 (tap)="getSleepTotal()">Sleep Totals</h5>
+    <h2>{{totalSleep}} Hours</h2>
+  </ion-col>
+  <ion-col col-8>
+    <div [chart]="chart"></div>
+  </ion-col>
+</ion-row>

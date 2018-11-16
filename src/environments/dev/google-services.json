@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "147622430845",
+    "firebase_url": "https://sbfl-dev.firebaseio.com",
+    "project_id": "sbfl-dev",
+    "storage_bucket": "sbfl-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147622430845:android:a6bf683ba3a308da",
+        "android_client_info": {
+          "package_name": "com.devconsult.sbfl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "147622430845-a4msl3bcrhiussfbobal592mtigtou8v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5MD2m4E9Tih3IhNo_bSoMAJFenAOnB8A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

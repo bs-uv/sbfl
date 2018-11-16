@@ -1,0 +1,31 @@
+<!-- <ion-item>
+  <ion-avatar item-start>
+    <img src="assets/img/venkman.jpg">
+  </ion-avatar>
+  <h2>Venkman</h2>
+  <p>{{ member | json }}</p>
+</ion-item>
+<ion-item-options>
+  <button ion-button color="light" icon-start>
+      <ion-icon name="ios-more"></ion-icon>
+      More
+    </button>
+  <button ion-button color="primary" icon-start>
+      <ion-icon name="text"></ion-icon>
+      Text
+    </button>
+  <button ion-button color="secondary" icon-start>
+      <ion-icon name="call"></ion-icon>
+      Call
+    </button>
+</ion-item-options> -->
+<ion-item>
+  <ion-avatar item-start>
+    <profile-image [uid]="memberId" [attribute]="'photoURL'" [class]="''"></profile-image>
+  </ion-avatar>
+  <h2>
+    <profile-element [uid]="memberId" [attribute]="'name'"></profile-element>
+    <span *ngIf="memberId == uid">(You)</span>
+  </h2>
+  <ion-icon color="secondary" name="ios-chatbubbles-outline" item-end *ngIf="!(memberId == uid)" (tap)="processChannelCreation()" style="cursor: pointer;"></ion-icon>
+</ion-item>

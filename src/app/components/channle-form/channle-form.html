@@ -1,0 +1,22 @@
+<!-- Generated template for the ChannleFormComponent component -->
+<ion-card *ngIf="!(coaches?.length > 0)">
+  <ion-card-content>
+    <p class="centerText">
+      You have already started a chat with each of the coaches, <a (click)="goTo('NewsPage')">go back</a> and click on one of their threads to continue
+    </p>
+  </ion-card-content>
+</ion-card>
+
+<ion-list *ngIf="(coaches?.length > 0)">
+  <ion-list-header class="graybg">
+    Coaches
+    <ion-note item-end style="color: #fff;">Click to begin chat</ion-note>
+  </ion-list-header>
+
+  <button ion-item *ngFor="let coach of coaches" (tap)="addCoach(coach)">
+    <ion-avatar item-start>
+      <img [src]="coach.photoURL">
+    </ion-avatar>
+    <h2>{{coach.name}}</h2>
+  </button>
+</ion-list>

@@ -1,0 +1,31 @@
+group-card {
+  p {
+    font-size: 0.8em !important;
+  }
+  .card-header {
+    padding-bottom: 0px;
+  }
+  // .inforow {
+  // border-top: 1px solid #dedede;
+  // font-size: 0.8em !important;
+  // }
+  ion-badge {
+    font-size: 0.6em !important;
+    padding: 3px 5px;
+    margin-right: 2px;
+  }
+  ion-avatar {
+    text-align: center;
+    font-size: 32px;
+    color: #64BF5D;
+  }
+  ion-card-header {
+    font-weight: bold;
+  }
+  .timediv {
+    float: right;
+    color: #6D60A0;
+    font-weight: normal;
+    font-size: 75%;
+  }
+}

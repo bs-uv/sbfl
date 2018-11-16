@@ -1,0 +1,19 @@
+challenge-box {
+  .list-md .item-block .item-inner,
+  .item-md.item-block .item-inner,
+  .list-ios .item-block .item-inner,
+  .item-ios.item-block .item-inner,
+  {
+    border-bottom: 0px solid #fff;
+    color: white;
+    font-weight: bold;
+    font-size: 1.6rem;
+  }
+  .cname {
+    text-align: right;
+    margin: 10px;
+    line-height: 30px;
+    height: 30px;
+    overflow: hidden;
+  }
+}

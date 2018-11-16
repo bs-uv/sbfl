@@ -1,0 +1,27 @@
+<!-- <ion-grid class="input-wrap">
+  <ion-row>
+    <ion-col col-10>
+      <ion-textarea #chatInput placeholder="Enter message ..." [(ngModel)]="text" (ionFocus)="onFocus()" name="message-text" autocomplete="true" autocorrect="on"></ion-textarea>
+      <div *ngIf="fireAPI.status && fireAPI.status != 'success'" class="statusDiv" [ngClass]="{'secondary': (fireAPI.status && fireAPI.status == 'Sending ...'), 'danger': (fireAPI.status && fireAPI.status != 'Sending ...')}">{{ fireAPI.status }}</div>
+    </ion-col>
+    <ion-col col-2>
+      <button ion-button clear icon-only item-right (click)="sendMessage(chatInput)" [disabled]="text === ''">
+          <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-grid> -->
+<form>
+  <ion-toolbar class="no-border" color="white">
+    <!-- <ion-textarea #chatInput placeholder="Enter message ..." [(ngModel)]="text" (ionFocus)="onFocus()" name="message-text" autocomplete="true" autocorrect="on"></ion-textarea> -->
+    <ion-input #chatInput [(ngModel)]="text" name="message-text" autocomplete="true" autocorrect="on" placeholder="Write your message ..."></ion-input>
+    <!-- <ion-buttons end>
+      <button ion-button (click)="sendPicMsg()"><ion-icon class="camera-btn" name="camera"></ion-icon></button>
+    </ion-buttons> -->
+    <ion-buttons end>
+      <button ion-button clear icon-only item-right (click)="sendMessage(chatInput)" [disabled]="text === ''">
+            <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-toolbar>
+</form>

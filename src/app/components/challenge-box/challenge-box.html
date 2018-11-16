@@ -1,0 +1,108 @@
+<!-- Generated template for the ChallengeBoxComponent component -->
+
+<!-- 
+
+
+ -->
+
+
+<div *ngIf="row.status !== 'finished' && row.members[auth.user.sub]">
+  <div class="borderBottom gradient blueGradient" style="overflow: auto; padding: 15px;" [ngClass]="{'orangeGradient': row.members[auth.user.sub].isAccepted }">
+
+
+    <!-- <ion-buttons end *ngIf="row.members[auth.user.sub].isAccepted">
+      <button ion-button icon-only (click)="presentPopover($event, row)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons> -->
+
+
+
+    <ion-item style="background: transparent; border-bottom: 0px;" class="centerText">{{ row.target + ' ' + row.category + 's' }} challenge
+      <button ion-button outline item-end (click)="presentPopover($event, row)" style="border-color: white; color: white;">
+          <ion-icon name="arrow-down"></ion-icon>
+      </button>
+    </ion-item>
+
+
+
+    <!-- <ion-row center class="centerText">
+      <ion-col> -->
+
+    <!-- <h5>{{ row.title }}</h5> -->
+    <!-- <h1>{{ row.target + ' ' + row.category + 's' }} challenge</h1> -->
+    <!-- {{ row.members | json }} -->
+    <!-- </ion-col>
+    </ion-row> -->
+
+    <div *ngIf="!row.members[auth.user.sub].isAccepted">
+      <ion-row center class="centerText">
+        <ion-col>
+          <profile-image [uid]="row.createdBy" [attribute]="'name'" [class]="'centerText'" style="width: 100%">
+            has sent an invitation for {{ row.target + ' ' + challenges.units[row.category] }} challenge.
+          </profile-image>
+          <br>
+          <br>
+          <button ion-button (click)="action(row, auth.user.sub, 'ACCEPT')">
+            Accept
+          </button>
+          <button ion-button color="danger" (click)="action(row, auth.user.sub, 'REJECT')">
+            Reject
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngIf="row.members[auth.user.sub].isAccepted">
+      <ion-row *ngFor="let member of row.members | objtoarray">
+        <ion-col col-2 class="textRight cname">
+          <div *ngIf="auth.user.sub == member.id"> You </div>
+          <profile-image *ngIf="auth.user.sub !== member.id" [uid]="member.id" [attribute]="'name'" [class]="''"></profile-image>
+        </ion-col>
+        <ion-col col>
+          <progress-bar [progress]="member.score/row.target * 100" [color]="'#27bad6'" [score]="member.score" [unit]="row.category"></progress-bar>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row center class="centerText">
+        <ion-col>
+          <button ion-button color="tertiary" (click)="action(row, auth.user.sub, 'REJECT')">
+            Forfeit
+          </button>
+        </ion-col>
+      </ion-row> -->
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="row.status == 'finished'">
+  <div class="borderBottom gradient redGradient" style="overflow: auto; padding: 15px;" [ngClass]="{'greenGradient': row.members[auth.user.sub].isCompleted}">
+
+    <ion-row center class="centerText">
+      <ion-col>
+        <!-- <h5>{{ row.title }}</h5> -->
+        <h1>{{ row.target + ' ' + row.category + 's' }} challenge</h1>
+        <!-- {{ row.members | json }} -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let member of row.members | objtoarray" class="centerText">
+      <ion-col>
+        <span *ngIf="member.isCompleted && auth.user.sub == member.id">
+        <h1>Congratulation! </h1>
+        <h3>You have won the challenge!</h3>
+      </span>
+        <span *ngIf="member.isCompleted && auth.user.sub !== member.id">
+        <h1>Sorry!</h1>
+        <h3><profile-image *ngIf="auth.user.sub !== member.id" [uid]="member.id" [attribute]="'name'" [class]="''"></profile-image> has won the challenge!</h3>
+      </span>
+      </ion-col>
+      <!-- <div *ngIf="!member.isCompleted">
+        <div *ngIf="auth.user.sub == member.id"> You </div>
+        <profile-image *ngIf="auth.user.sub !== member.id" [uid]="member.id" [attribute]="'name'" [class]="''"></profile-image> have loose the challenge
+      </div> -->
+    </ion-row>
+
+
+  </div>
+</div>

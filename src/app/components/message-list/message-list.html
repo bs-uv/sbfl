@@ -1,0 +1,50 @@
+<div *ngIf="afAuth.authState | async ; else showMessage">
+
+  <!-- <ion-infinite-scroll (ionInfinite)="fireAPI.doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+
+  <!-- <button ion-button (click)="fireAPI.doInfinite($event)">Load More</button> -->
+
+
+  <ion-list no-lines>
+
+    <!-- <div class="container" scrollable (scrollPosition)="scrollHandler($event)">
+      <div *ngFor="let row of page.data | async">
+        <h1>{{ row.body }}</h1>
+      </div>
+
+      <p *ngIf="page.done | async">I ran out of boats!</p>
+      <div *ngIf="page.loading | async">Loading ...</div>
+    </div> -->
+
+    <!-- <ng-container *ngFor="let message of page.data | async | orderBy: 'createdAt'; index as i; first as isFirst; display as true"> -->
+    <ng-container *ngFor="let message of messages | orderBy: 'createdAt'; index as i; first as isFirst; display as true">
+
+      <ng-container *ngIf="isFirst == true">
+        <ion-item>
+          <h2 center>{{message.createdAt | date }}</h2>
+        </ion-item>
+        <hr>
+        <message-card [message]="message" [ownerId]="fireAuthAPI.user.uid"></message-card>
+      </ng-container>
+
+
+      <ng-container *ngIf="isFirst == false">
+        <ng-container *ngIf=" ( message.createdAt | date ) != ( previous.createdAt | date)">
+          <ion-item>
+            <h2>{{message.createdAt | date }}</h2>
+          </ion-item>
+          <hr>
+        </ng-container>
+        <message-card [message]="message" [ownerId]="fireAuthAPI.user.uid" [prevMessage]="previous"></message-card>
+      </ng-container>
+      {{ setPrevious(message) }}
+    </ng-container>
+  </ion-list>
+</div>
+
+
+<ng-template #showMessage>
+  Loading ...
+</ng-template>

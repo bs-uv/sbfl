@@ -1,0 +1,9 @@
+<!-- Generated template for the AppOpenerComponent component -->
+<ion-row *ngIf="display" class="borderBottom" style="background: #ffe2e2; padding: 10px;">
+  <ion-col class="centerText text-danger">
+    <!-- <div class="clock">{{ currentTime | date: 'MMMM d, y, h:mm:ss a'}}</div> -->
+    <div class="timeago">Last synced {{lastSyncTime | timeAgo}}</div>
+    <button ion-button outline small (tap)="open()" color="danger">Sync now!</button>
+    <button ion-button outline small (tap)="log()" color="danger">Log</button>
+  </ion-col>
+</ion-row>

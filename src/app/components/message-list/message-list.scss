@@ -1,0 +1,44 @@
+message-list {
+  .container {
+    height: 500px;
+    overflow-y: scroll;
+  }
+  img.owner {
+    display: none;
+  }
+  ion-item.item.item-block.item-ios,
+  ion-item.item.item-block.item-md {
+    display: flex;
+    // align-items: flex-end;
+  }
+  .item-md,
+  .item-ios {
+    h2 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #646363;
+    }
+    p {
+      font-size: 1.2rem;
+      max-width: 100%;
+    }
+  }
+  ion-label {
+    p {
+      border: 1px solid #ccc;
+      background: #fafafa;
+      padding: 10px;
+      border-radius: 10px;
+      color: #000000;
+      font-size: 1.2rem;
+      float: left;
+      &.owner {
+        float: right;
+        border: 1px solid rgb(90, 167, 240);
+        background: rgb(90, 167, 240);
+        color: #ffffff;
+        text-align: right;
+      }
+    }
+  }
+}

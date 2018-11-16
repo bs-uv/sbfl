@@ -1,0 +1,29 @@
+channle-list {
+  .list-ios,
+  .list-md {
+    margin-bottom: 0px;
+  }
+  .item-ios [item-right],
+  .item-ios [item-end],
+  .item-md [item-right],
+  .item-md [item-end] {
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+  .item-ios,
+  .item-md {
+    ion-note {
+      p {
+        font-size: 1.1rem;
+      }
+    }
+  }
+  .short {
+    ion-item-sliding {
+      display: none;
+    }
+    ion-item-sliding:nth-child(-n+4) {
+      display: inline-block;
+    }
+  }
+}

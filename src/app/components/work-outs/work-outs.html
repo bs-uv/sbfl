@@ -1,0 +1,17 @@
+<div *ngFor="let workout of workouts | slice:0:2;" class="workoutlist">
+  <h2>{{ workout.title }}</h2>
+  <ion-scroll scrollX="true" style="width:100vw; height: 112px;">
+    <ion-row nowrap class="headerChip">
+      <div *ngFor="let video of workout.videos; let idx = index" class="video-thumb">
+
+        <ion-thumbnail>
+          <img [src]="'https://img.youtube.com/vi/' + video.id + '/default.jpg'" />
+        </ion-thumbnail>
+        <p>
+          <ion-label>{{video.title}}</ion-label>
+          <ion-label class="small">{{video.duration}} min, {{video.calories}} cal</ion-label>
+        </p>
+      </div>
+    </ion-row>
+  </ion-scroll>
+</div>

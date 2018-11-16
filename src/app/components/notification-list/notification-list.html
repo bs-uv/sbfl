@@ -1,0 +1,25 @@
+<ion-list>
+
+  <ion-item-sliding *ngFor="let row of list | orderBy: 'lastUpdate':true">
+    <button ion-item>
+      
+      <h2>{{ row.title}}</h2>
+      <p>{{ row.body }}</p>
+      <ion-note item-end><p>{{ row.lastUpdate | timeAgo }}</p></ion-note>
+    </button>
+    <ion-item-options side="right">
+      <button ion-button color="danger" (tap)="showConfirm(row.id)">
+        <ion-icon name="close"></ion-icon>
+        Delete
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+
+<ion-card *ngIf="!(list?.length > 0)">
+  <ion-card-content>
+    <p class="centerText">
+      No recent notifications to show.
+    </p>
+  </ion-card-content>
+</ion-card>

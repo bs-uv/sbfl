@@ -1,0 +1,7 @@
+<ng-container *ngIf="attribute === 'photoURL'">
+  <img class="{{ class }}" src="{{ profile.photoURL || image }}" alt="{{ profile.name }}">
+</ng-container>
+<ng-container *ngIf="attribute === 'name'">
+  {{profile.name}}
+</ng-container>
+<ng-content></ng-content>

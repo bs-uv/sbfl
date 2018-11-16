@@ -1,0 +1,17 @@
+<ng-container *ngIf="template === 'header'">
+  <ng-container *ngIf="attribute === 'photoURL'">
+    <h1 class="text-center">
+      <profile-element *ngFor="let uid of users" [uid]="uid" [attribute]="'photoURL'" [class]="'mr-3 img-fluid circled max64'"></profile-element>
+    </h1>
+  </ng-container>
+</ng-container>
+
+
+<ng-container *ngIf="template === 'list'">
+  <ng-container *ngIf="attribute === 'photoURL'">
+    <profile-element *ngFor="let uid of users" [uid]="uid" [attribute]="'photoURL'" [class]="'mr-3 img-fluid circled max42'"></profile-element>
+  </ng-container>
+  <ng-container *ngIf="attribute === 'name'">
+    <profile-element *ngFor="let uid of users" [uid]="uid" [attribute]="'name'"></profile-element>
+  </ng-container>
+</ng-container>

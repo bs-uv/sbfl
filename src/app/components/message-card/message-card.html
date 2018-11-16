@@ -1,0 +1,47 @@
+<!-- Owner -->
+<ng-container *ngIf="message.uid == ownerId; else showResponse">
+
+  <ion-item text-wrap>
+    <ion-avatar item-left>
+    </ion-avatar>
+    <div item-right class="datetime">
+      <div *ngIf="sameblock == false">
+        {{ message.createdAt | date: 'hh:mm a' }}
+      </div>
+    </div>
+    <p class="owner" [innerHTML]="message.body | beautifyMessage | linky"></p>
+  </ion-item>
+
+</ng-container>
+
+<!-- Responder -->
+<ng-template #showResponse>
+
+  <ion-item text-wrap [ngClass]="{new: readStatus == false}">
+    <ion-avatar item-left>
+      <profile-image [uid]="message.uid" [attribute]="'photoURL'" [class]="''" *ngIf="sameblock == false"></profile-image>
+      <!-- <img src="https://d6y8zfzc2qfsl.cloudfront.net/D44A5A1D-EC51-C6A9-79D2-1ED83B5F30BA_profile_150_square.jpg" alt="Avatar" > -->
+    </ion-avatar>
+    <div item-right class="datetime">
+
+      <div *ngIf="sameblock == false">
+        {{ message.createdAt | date: 'hh:mm a' }}
+      </div>
+    </div>
+    <h2 *ngIf="sameblock == false">
+      <profile-image [uid]="message.uid" [attribute]="'name'" [class]="''"></profile-image>
+    </h2>
+    <p [innerHTML]="message.body | beautifyMessage | linky"></p>
+  </ion-item>
+</ng-template>
+
+
+<!-- <ion-avatar item-left>
+  <img [ngClass]="{owner: message.uid == ownerId }" src="https://d6y8zfzc2qfsl.cloudfront.net/D44A5A1D-EC51-C6A9-79D2-1ED83B5F30BA_profile_150_square.jpg" alt="Avatar">
+</ion-avatar>
+<h2 *ngIf="message.uid == ownerId"> User Name</h2>
+<h2 *ngIf="message.uid != ownerId"> Admin</h2>
+<p [ngClass]="{owner: message.uid == ownerId }">{{message.body}}
+</p> -->
+
+<!-- {{ ownerId }} <br> {{ message | json }} -->

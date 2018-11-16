@@ -1,0 +1,6 @@
+<h5 class="fullColumn">{{title}}</h5>
+<div *ngFor="let row of quotes | slice:0:5;" [ngSwitch]="componentName">
+  <p *ngSwitchCase="'weight'">"{{ row.text }}" --{{row.name}}</p>
+  <p *ngSwitchCase="'fat'">"{{ row.text }}" --{{row.name}}</p>
+  <p *ngSwitchDefault>- {{ row.text }}</p>
+</div>

@@ -1,0 +1,41 @@
+<ion-card>
+  <ion-card-header>
+
+    <div class="timediv">{{ hit.startTime}}</div>
+
+    {{ hit.name}}
+
+  </ion-card-header>
+
+  <ion-item *ngIf="!(display == 'long')">
+    <ion-avatar item-start>
+      <i class="fas {{ category.icon }}"></i>
+    </ion-avatar>
+    <p>{{ hit.location }}</p>
+    <ion-badge *ngFor="let day of hit.weekdays" color="light">{{ day | slice: 0:2 }}</ion-badge>
+  </ion-item>
+
+  <ion-item *ngIf="(display == 'long')">
+    <ion-avatar item-start>
+      <i class="fas {{ category.icon }}"></i>
+    </ion-avatar>
+    <p text-wrap>{{ hit.location }}</p>
+    <ion-badge *ngFor="let day of hit.weekdays" color="light">{{ day | slice: 0:2 }}</ion-badge>
+  </ion-item>
+
+  <ion-label color="secondary-dark" style="padding-left: 10px;">
+    <!-- <ion-icon name="clock"></ion-icon> -->
+    <span>{{ hit.duration }} min </span>
+    <span style="color: gray" *ngIf="hit._rankingInfo.matchedGeoLocation">({{ hit._rankingInfo.matchedGeoLocation.distance | distanceUnit }})</span>
+  </ion-label>
+  <!-- <div>
+    <span style="color: red" *ngIf="!hit._rankingInfo.matchedGeoLocation">({{ hit | json }} mile)</span>
+  </div> -->
+</ion-card>
+
+
+<ion-card *ngIf="(display == 'long') && hit.description && (hit.description.length > 0)">
+  <ion-card-content>
+    {{ hit.description }}
+  </ion-card-content>
+</ion-card>

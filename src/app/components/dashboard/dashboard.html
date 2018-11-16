@@ -1,0 +1,41 @@
+<h5>{{title}}</h5>
+<div [ngSwitch]="componentType" *ngIf="!nodata">
+  <ng-template [ngSwitchCase]="'LOG'">
+    <div [chart]="chart" *ngIf="!isTotal"></div>
+    <ion-row *ngIf="isTotal">
+      <ion-col col-4>
+        <h2>{{total}}</h2>
+      </ion-col>
+      <ion-col col-8>
+        <div [chart]="chart"></div>
+      </ion-col>
+    </ion-row>
+  </ng-template>
+
+  <ng-template [ngSwitchCase]="'PROGRESS'">
+    <circle-progress [percent]="progressPercent"></circle-progress>
+  </ng-template>
+
+  <ng-template [ngSwitchCase]="'CURRENT'">
+    <h1 style="color: #fff; font-size: 36px;">{{progressPercent}}</h1>
+  </ng-template>
+
+  <ng-template [ngSwitchCase]="'GOAL'">
+    <h1 style="color: #fff; font-size: 36px;">{{progressPercent}}</h1>
+  </ng-template>
+
+  <ng-template [ngSwitchCase]="'profile'">
+    <h1 style="color: #fff; font-size: 36px;">{{displayText}}</h1>
+  </ng-template>
+
+  <ng-template [ngSwitchCase]="'BADGE'">
+    <img class="img-circle badgeImage" [src]="row.img" *ngFor="let row of displayArray">
+  </ng-template>
+
+</div>
+<!-- <p class="mini-text">
+  [{{componentName}}] - [{{componentType}}] - [{{filter}}]
+</p> -->
+<div *ngIf="nodata">
+  loading ...
+</div>

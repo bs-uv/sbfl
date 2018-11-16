@@ -1,0 +1,34 @@
+<!-- Generated template for the UserGroupComponent component -->
+<ais-instantsearch [config]="options" *ngIf="searchParameters" #search>
+  <ais-configure [searchParameters]="searchParameters"></ais-configure>
+
+
+  <!-- <ais-hits>
+    <ng-template let-hits="hits" let-results="results">
+      <ion-card *ngIf="hits.length === 0">
+        <ion-item>
+          <ion-label color="danger">No results found matching <strong>{{results.query}}</strong>.</ion-label>
+        </ion-item>
+      </ion-card>
+      <group-card *ngFor="let hit of hits" (tap)="openDetails('GroupDetailsPage', hit, categories[hit.category])" [hit]="hit" [category]="categories[hit.category]"></group-card>
+    </ng-template>
+  </ais-hits> -->
+
+
+  <ais-infinite-hits>
+    <ng-template let-hits="hits" let-results="results" let-refine="showMore">
+      <ion-card *ngIf="hits.length === 0">
+        <ion-item>
+          <ion-label color="danger">No results found matching <strong>{{results.query}}</strong>.</ion-label>
+        </ion-item>
+      </ion-card>
+      <group-card *ngFor="let hit of hits" (tap)="openDetails('GroupDetailsPage', hit, categories[hit.category])" [hit]="hit" [category]="categories[hit.category]">
+      </group-card>
+      <div style="margin: 10px;" *ngIf="(hits.length > 0)">
+        <button ion-button block type="submit" color="secondary-dark" (click)="refine($event)">Show more</button>
+      </div>
+    </ng-template>
+  </ais-infinite-hits>
+
+  <!-- <ais-pagination></ais-pagination> -->
+</ais-instantsearch>
